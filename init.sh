@@ -59,11 +59,12 @@ print_green "Seting fish as default shell"
 sudo chsh -s /usr/bin/fish $USER
 
 dotfiles_dir='~/dotfiles'
-print_green "Cloning dotfiles to $dotfiles_dir" 
-git clone --recurse-submodules git@github.com:ntw1vnl/dotfiles.git $dotfiles_dir
+print_green "Cloning dotfiles to $dotfiles_dir"
+git clone git@github.com:ntw1vnl/dotfiles.git $dotfiles_dir
 cd $dotfiles_dir
 git fetch --all
 git checkout new
+git submodule update --init --recursive
 
 print_green "Stowing dotfiles..."
 stow --dotfiles .
