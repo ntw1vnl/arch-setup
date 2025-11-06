@@ -14,6 +14,10 @@ function error_exit {
 
 # TODO: generate an ssh key and add it to github to authenticate
 
+#Setup XDG user dirs
+sudo pacman -S --noconfirm xdg-user-dirs 
+xdg-user-dirs-update
+
 packages_devel=(
   'base-devel'
   'git'
