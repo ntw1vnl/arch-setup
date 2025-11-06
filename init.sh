@@ -12,14 +12,24 @@ function error_exit {
     exit 1
 }
 
+# TODO: generate an ssh key and add it to github to authenticate
+
+packages_devel=(
+  'base-devel'
+  'git'
+)
+
+print_green "Installing devel packages..."
+sudo pacman -S --noconfirm ${packages_devel[@]}
+
 packages_cli=(
 'bat'
 'eza'
 'fastfetch'
 'fish'
 'fzf'
-'git'
 'neovim'
+'ripgrep'
 'starship'
 'stow'
 'tmux'
@@ -27,7 +37,6 @@ packages_cli=(
 'ttf-cascadia-mono-nerd'
 'zoxide'
 )
-
 
 print_green "Installing cli packages..."
 echo ${packages_cli[@]}
