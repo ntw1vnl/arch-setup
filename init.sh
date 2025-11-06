@@ -54,10 +54,13 @@ bat cache --build
 print_green "Seting fish as default shell"
 sudo chsh -s /usr/bin/fish $USER
 
-print_green "Cloning dotfiles..."
-git clone --recurse-submodules git@github.com:ntw1vnl/dotfiles.git ~/dotfiles
+dotfiles_dir='~/dotfiles'
+print_green "Cloning dotfiles to $dotfiles_dir" 
+git clone --recurse-submodules git@github.com:ntw1vnl/dotfiles.git $dotfiles_dir
+cd $dotfiles_dir
+git fetch --all
+git checkout new
 
 print_green "Stowing dotfiles..."
-cd ~/dotfiles
 stow --dotfiles .
 
