@@ -8,14 +8,14 @@ function print_green {
 }
 
 function error_exit {
-    echo "Error: $1" >&2
-    exit 1
+  echo "Error: $1" >&2
+  exit 1
 }
 
 # TODO: generate an ssh key and add it to github to authenticate
 
 #Setup XDG user dirs
-sudo pacman -S --noconfirm xdg-user-dirs 
+sudo pacman -S --noconfirm xdg-user-dirs
 xdg-user-dirs-update
 
 packages_devel=(
@@ -27,23 +27,34 @@ print_green "Installing devel packages..."
 sudo pacman -S --noconfirm ${packages_devel[@]}
 
 packages_cli=(
-'bat'
-'eza'
-'fastfetch'
-'fish'
-'fzf'
-'neovim'
-'ripgrep'
-'starship'
-'stow'
-'tmux'
-'trash-cli'
-'ttf-cascadia-mono-nerd'
-'zoxide'
+  'alacritty'
+  'bat'
+  'eza'
+  'fastfetch'
+  'fish'
+  'fzf'
+  'neovim'
+  'ripgrep'
+  'starship'
+  'stow'
+  'tmux'
+  'trash-cli'
+  'ttf-cascadia-mono-nerd'
+  'zoxide'
 )
+
+packages_tui {
+  'bluetui'
+  'wiremix'
+  'impala'
+}
 
 print_green "Installing cli packages..."
 sudo pacman -S --noconfirm ${packages_cli[@]}
+
+print_green "Installing tui packages..."
+sudo pacman -S --noconfirm ${packages_tui[@]}
+
 
 # Tmux setup
 print_green "Clone tmux plugin manager..."
@@ -68,4 +79,3 @@ git submodule update --init --recursive
 
 print_green "Stowing dotfiles..."
 stow --dotfiles .
-
